@@ -1,0 +1,20 @@
+[effect]
+id = "concat.clear-vocals"
+name = "Clear Vocals"
+kind = "audio"
+category = "Tone"
+order = 60
+intensity = "amount"
+description = "Speech that cuts through: mud down, presence up."
+
+[[param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[ffmpeg]
+chain = "highpass=f=100,equalizer=f=200:t=q:w=1:g={fixed(0 - amount / 100 * 3, 1)},equalizer=f=2800:t=q:w=1.2:g={fixed(amount / 100 * 4, 1)},acompressor=threshold={fixed(0.5 - amount / 100 * 0.2, 2)}:ratio={fixed(2 + amount / 100 * 1.5, 1)}:attack=15:release=120,alimiter=limit=0.95"

@@ -1,0 +1,13 @@
+[[case]]
+name = "default"
+chain = "equalizer=f=160:t=q:w=1.2:g=2.4,equalizer=f=400:t=q:w=1.2:g=1.2,acompressor=threshold=0.38:ratio=2.9:attack=15:release=120,alimiter=limit=0.95"
+
+[[case]]
+name = "minimum"
+at = "min"
+chain = "equalizer=f=160:t=q:w=1.2:g=0.0,equalizer=f=400:t=q:w=1.2:g=0.0,acompressor=threshold=0.50:ratio=2.0:attack=15:release=120,alimiter=limit=0.95"
+
+[[case]]
+name = "maximum"
+at = "max"
+chain = "equalizer=f=160:t=q:w=1.2:g=4.0,equalizer=f=400:t=q:w=1.2:g=2.0,acompressor=threshold=0.30:ratio=3.5:attack=15:release=120,alimiter=limit=0.95"

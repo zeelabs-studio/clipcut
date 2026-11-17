@@ -1,0 +1,20 @@
+[effect]
+id = "concat.divine-echo"
+name = "Divine Echo"
+kind = "audio"
+category = "Space"
+order = 71
+intensity = "amount"
+description = "A long, bright, heavenly echo."
+
+[[param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[ffmpeg]
+chain = "aecho=0.8:0.88:{fixed(250 + amount / 100 * 150, 0)}|{fixed(500 + amount / 100 * 300, 0)}:{fixed(0.2 + amount / 100 * 0.3, 2)}|{fixed(0.15 + amount / 100 * 0.2, 2)},equalizer=f=6000:t=h:w=2000:g={fixed(amount / 100 * 3, 1)},alimiter=limit=0.95"

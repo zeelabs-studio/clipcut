@@ -1,0 +1,23 @@
+format = 2
+
+[effect]
+id = "concat.brighten-up"
+name = "Brighten Up"
+kind = "filter"
+category = "HD"
+order = 6
+intensity = "amount"
+description = "Lifts a dim picture without washing it out."
+
+[[param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.wgsl"
+space = "display"

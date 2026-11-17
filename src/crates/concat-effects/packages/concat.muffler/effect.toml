@@ -1,0 +1,20 @@
+[effect]
+id = "concat.muffler"
+name = "Muffler"
+kind = "audio"
+category = "Tone"
+order = 74
+intensity = "amount"
+description = "Heard through a wall."
+
+[[param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[ffmpeg]
+chain = "lowpass=f={fixed(2500 - amount / 100 * 1900, 0)}:poles=2,alimiter=limit=0.95"

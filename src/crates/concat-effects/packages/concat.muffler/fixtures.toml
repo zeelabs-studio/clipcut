@@ -1,0 +1,13 @@
+[[case]]
+name = "default"
+chain = "lowpass=f=1360:poles=2,alimiter=limit=0.95"
+
+[[case]]
+name = "minimum"
+at = "min"
+chain = "lowpass=f=2500:poles=2,alimiter=limit=0.95"
+
+[[case]]
+name = "maximum"
+at = "max"
+chain = "lowpass=f=600:poles=2,alimiter=limit=0.95"

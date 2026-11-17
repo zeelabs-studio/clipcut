@@ -1,0 +1,10 @@
+# ClipCat: build the installers by hand from the Actions tab.
+# Runs the same build as a release (Windows .exe/.msi, macOS, Linux) but does not
+# publish anything: download the files from the finished run's Artifacts.
+name: ClipCat build
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    uses: ./.github/workflows/build-app.yml
+    secrets: inherit

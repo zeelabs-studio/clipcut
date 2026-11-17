@@ -1,0 +1,32 @@
+format = 2
+
+[effect]
+id = "concat.8k"
+name = "8K"
+kind = "filter"
+category = "HD"
+order = 2
+intensity = "amount"
+description = "Extra-detailed, high-clarity look."
+
+[[param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[param]]
+key = "sharp"
+label = "Sharpness"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.wgsl"
+space = "display"

@@ -1,0 +1,20 @@
+[effect]
+id = "concat.no-bass"
+name = "No Bass"
+kind = "audio"
+category = "Tone"
+order = 72
+intensity = "amount"
+description = "Takes the low end out."
+
+[[param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[ffmpeg]
+chain = "highpass=f={fixed(120 + amount / 100 * 180, 0)},alimiter=limit=0.95"

@@ -1,0 +1,32 @@
+format = 2
+
+[effect]
+id = "concat.4k-pop"
+name = "4K Pop"
+kind = "filter"
+category = "HD"
+order = 11
+intensity = "pop"
+description = "A crisp HD look: richer colour, a firmer S-curve and a touch of clarity."
+
+[[param]]
+key = "pop"
+label = "Pop"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[param]]
+key = "clarity"
+label = "Clarity"
+min = 0
+max = 100
+default = 40
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.wgsl"
+space = "display"

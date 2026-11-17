@@ -1,0 +1,20 @@
+[effect]
+id = "concat.music-enhancer"
+name = "Music Enhancer"
+kind = "audio"
+category = "Tone"
+order = 75
+intensity = "amount"
+description = "Fuller lows, clearer mids, airy highs for music."
+
+[[param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[ffmpeg]
+chain = "equalizer=f=60:t=q:w=1:g={fixed(amount / 100 * 2.5, 1)},equalizer=f=3000:t=q:w=1.5:g={fixed(amount / 100 * 1.5, 1)},equalizer=f=12000:t=h:w=2000:g={fixed(amount / 100 * 3, 1)},acompressor=threshold={fixed(0.5 - amount / 100 * 0.15, 2)}:ratio={fixed(1.5 + amount / 100 * 1, 1)}:attack=20:release=200,alimiter=limit=0.95"

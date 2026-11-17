@@ -1,0 +1,21 @@
+[effect]
+id = "concat.crystal-clear"
+name = "Crystal Clear"
+kind = "audio"
+category = "Clean"
+order = 43
+intensity = "amount"
+aliases = ["crystal clear", "clear voice"]
+description = "A clean, bright voice: rumble and hiss out, presence and air in, level evened."
+
+[[param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[ffmpeg]
+chain = "highpass=f=90,afftdn=nf={fixed(0 - 25 - amount / 100 * 15, 1)}:nr={fixed(6 + amount / 100 * 14, 1)},equalizer=f=3500:t=q:w=1.2:g={fixed(amount / 100 * 4, 1)},equalizer=f=9500:t=h:w=2000:g={fixed(amount / 100 * 3, 1)},deesser=i={fixed(amount / 100 * 0.4, 2)},acompressor=threshold={fixed(0.5 - amount / 100 * 0.25, 2)}:ratio={fixed(2 + amount / 100 * 1.5, 1)}:attack=15:release=120,alimiter=limit=0.95"

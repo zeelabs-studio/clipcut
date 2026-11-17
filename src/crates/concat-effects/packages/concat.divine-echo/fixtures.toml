@@ -1,0 +1,13 @@
+[[case]]
+name = "default"
+chain = "aecho=0.8:0.88:340|680:0.38|0.27,equalizer=f=6000:t=h:w=2000:g=1.8,alimiter=limit=0.95"
+
+[[case]]
+name = "minimum"
+at = "min"
+chain = "aecho=0.8:0.88:250|500:0.20|0.15,equalizer=f=6000:t=h:w=2000:g=0.0,alimiter=limit=0.95"
+
+[[case]]
+name = "maximum"
+at = "max"
+chain = "aecho=0.8:0.88:400|800:0.50|0.35,equalizer=f=6000:t=h:w=2000:g=3.0,alimiter=limit=0.95"

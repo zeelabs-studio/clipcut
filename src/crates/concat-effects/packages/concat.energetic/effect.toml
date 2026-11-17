@@ -1,0 +1,20 @@
+[effect]
+id = "concat.energetic"
+name = "Energetic"
+kind = "audio"
+category = "Tone"
+order = 63
+intensity = "amount"
+description = "Brighter and punchier, for lively delivery."
+
+[[param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[ffmpeg]
+chain = "equalizer=f=2500:t=q:w=1.2:g={fixed(amount / 100 * 3, 1)},equalizer=f=8000:t=h:w=2000:g={fixed(amount / 100 * 3, 1)},acompressor=threshold={fixed(0.5 - amount / 100 * 0.3, 2)}:ratio={fixed(2 + amount / 100 * 2, 1)}:attack=8:release=100,alimiter=limit=0.95"

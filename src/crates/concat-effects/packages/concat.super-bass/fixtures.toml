@@ -1,0 +1,13 @@
+[[case]]
+name = "default"
+chain = "bass=g=9.6:f=80:w=0.5,equalizer=f=50:t=q:w=1:g=2.4,volume=-1.8dB,alimiter=limit=0.95"
+
+[[case]]
+name = "minimum"
+at = "min"
+chain = "bass=g=0.0:f=80:w=0.5,equalizer=f=50:t=q:w=1:g=0.0,volume=0.0dB,alimiter=limit=0.95"
+
+[[case]]
+name = "maximum"
+at = "max"
+chain = "bass=g=16.0:f=80:w=0.5,equalizer=f=50:t=q:w=1:g=4.0,volume=-3.0dB,alimiter=limit=0.95"

@@ -1,0 +1,20 @@
+[effect]
+id = "concat.super-bass"
+name = "Super Bass"
+kind = "audio"
+category = "Tone"
+order = 66
+intensity = "amount"
+description = "Heavy sub-bass, level kept in check."
+
+[[param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[ffmpeg]
+chain = "bass=g={fixed(amount / 100 * 16, 1)}:f=80:w=0.5,equalizer=f=50:t=q:w=1:g={fixed(amount / 100 * 4, 1)},volume={fixed(0 - amount / 100 * 3, 1)}dB,alimiter=limit=0.95"

@@ -1,0 +1,20 @@
+[effect]
+id = "concat.muted-beat"
+name = "Muted Beat"
+kind = "audio"
+category = "Tone"
+order = 70
+intensity = "amount"
+description = "Dull and distant, like music from the next room."
+
+[[param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[ffmpeg]
+chain = "lowpass=f={fixed(6000 - amount / 100 * 4000, 0)},equalizer=f=90:t=q:w=1:g={fixed(amount / 100 * 3, 1)},alimiter=limit=0.95"

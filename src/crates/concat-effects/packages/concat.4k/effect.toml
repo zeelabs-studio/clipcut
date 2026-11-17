@@ -1,0 +1,32 @@
+format = 2
+
+[effect]
+id = "concat.4k"
+name = "4K"
+kind = "filter"
+category = "HD"
+order = 1
+intensity = "amount"
+description = "Crisp, punchy HD look."
+
+[[param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[param]]
+key = "sharp"
+label = "Sharpness"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.wgsl"
+space = "display"

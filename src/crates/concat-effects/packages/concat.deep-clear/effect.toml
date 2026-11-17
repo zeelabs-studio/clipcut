@@ -1,0 +1,20 @@
+[effect]
+id = "concat.deep-clear"
+name = "Deep & Clear"
+kind = "audio"
+category = "Tone"
+order = 62
+intensity = "amount"
+description = "A deeper voice that stays clear."
+
+[[param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 60
+step = 1
+unit = "%"
+
+[ffmpeg]
+chain = "highpass=f=70,equalizer=f=140:t=q:w=1:g={fixed(amount / 100 * 5, 1)},equalizer=f=280:t=q:w=1:g={fixed(0 - amount / 100 * 2, 1)},equalizer=f=4000:t=q:w=1.5:g={fixed(amount / 100 * 2.5, 1)},alimiter=limit=0.95"

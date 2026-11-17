@@ -1,0 +1,32 @@
+format = 2
+
+[effect]
+id = "concat.quality-restore"
+name = "Quality Restore"
+kind = "filter"
+category = "HD"
+order = 7
+intensity = "amount"
+description = "Softens noise, then restores crisp detail."
+
+[[param]]
+key = "amount"
+label = "Amount"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[[param]]
+key = "sharp"
+label = "Sharpness"
+min = 0
+max = 100
+default = 50
+step = 1
+unit = "%"
+
+[wgsl]
+entry = "effect.wgsl"
+space = "display"
