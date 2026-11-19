@@ -5,7 +5,6 @@ kind = "audio"
 category = "Clean"
 order = 43
 intensity = "amount"
-aliases = ["crystal clear", "clear voice"]
 description = "A clean, bright voice: rumble and hiss out, presence and air in, level evened."
 
 [[param]]

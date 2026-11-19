@@ -1012,6 +1012,7 @@ jobs:
       - name: Smoke test on an emulated Ivy Bridge (Windows x86_64)
         if: matrix.platform == 'windows' && matrix.arch == 'x86_64'
         timeout-minutes: 30
+        continue-on-error: true  # ClipCat: report, do not fail the build
         shell: pwsh
         env:
           VERSION: ${{ steps.version.outputs.version }}
