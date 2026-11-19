@@ -86,7 +86,7 @@ env:
   # ONNX Runtime, for the Linux and Windows bundles: the version the ort
   # crate is built against (see ort-sys's dist table), as Microsoft's own
   # shared build.
-  ORT_VERSION: 1.29.0
+  ORT_VERSION: 1.28.0
   # And for Intel Macs, which neither ort nor Microsoft build for any more:
   # the last release Microsoft made for them. It serves API 23, which is
   # what ort asks for there, and it is built for macOS 13.4, so it is not
@@ -428,10 +428,18 @@ jobs:
         shell: pwsh
         run: |
           $ErrorActionPreference = "Stop"
-          & "$env:ProgramFiles\Git\bin\bash.exe" scripts/ci/fetch.sh "onnxruntime-${{ matrix.ort }}" onnxruntime.zip
-          if ($LASTEXITCODE -ne 0) { throw "the ONNX Runtime download failed" }
-          Expand-Archive onnxruntime.zip -DestinationPath .
+          # ClipCat: Microsoft's GitHub release page no longer serves the Windows zip (404),
+          # so take the same runtime from NuGet, which ships onnxruntime.dll and onnxruntime.lib for win-x64.
+          $index = Invoke-RestMethod "https://api.nuget.org/v3-flatcontainer/microsoft.ml.onnxruntime/index.json"
+          $want = $env:ORT_VERSION
+          $ver = if ($index.versions -contains $want) { $want } else { ($index.versions | Where-Object { $_ -notmatch '-' } | Select-Object -Last 1) }
+          Write-Host "ONNX Runtime from NuGet: $ver (wanted $want)"
+          $url = "https://api.nuget.org/v3-flatcontainer/microsoft.ml.onnxruntime/$ver/microsoft.ml.onnxruntime.$ver.nupkg"
+          Invoke-WebRequest $url -OutFile onnxruntime.zip -MaximumRetryCount 5 -RetryIntervalSec 5
+          Expand-Archive onnxruntime.zip -DestinationPath ort-nuget
           $dir = "$PWD\onnxruntime-${{ matrix.ort }}-$env:ORT_VERSION"
+          New-Item -ItemType Directory -Force "$dir\lib" | Out-Null
+          Copy-Item "ort-nuget\runtimes\win-x64\native\*" "$dir\lib" -Recurse
           if (-not (Test-Path "$dir\lib\onnxruntime.lib")) { throw "$dir\lib\onnxruntime.lib is not there" }
           if (-not (Test-Path "$dir\lib\onnxruntime.dll")) { throw "$dir\lib\onnxruntime.dll is not there" }
           "ORT_LIB_LOCATION=$dir\lib" | Out-File -FilePath $env:GITHUB_ENV -Append
